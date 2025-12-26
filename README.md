@@ -726,3 +726,354 @@ export async function action({request}){
 export default CreateOrder;
 
 **
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tailwind CSS
+
+
+Tailwind is a utility first cSS framework packed with utility classes like flex, text-center and rotate-90, among many other classes taht can be composed to build any design directly in your markup in HTML or JSX.
+Utility first CSS write lots of tiny classes where each class has one single purpose and combine these classes to built entire components and layouts.
+
+
+For vite project to install tailwind following commands
+
+npm install -D tailwindcss@3 postcss autoprefixer
+npx tailwindcss init -p
+
+
+Your tailwind.config.js must include the content array as follows
+
+content: [
+  "./index.html",
+  "./src/**/*.{js,ts,jsx,tsx}",
+]
+
+
+
+In index.css include the following on top
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+Home.jsx
+
+
+function Home() {
+  return (
+    <div>
+      <h1 className="text-xl text-yellow-500 font-semibold text-stone-700">
+        The best pizza.
+        <br />
+        <span className="text-yellow-500">
+ 		Straight out of the oven, straight to you.
+        </span>
+      </h1>
+    </div>
+  );
+}
+
+export default Home;
+
+
+
+'npm install -D prettier prettier-plugin-tailwindcss' will automatically sort the order of class name in the order with which tailwind recommends. 'font-semibold' denotes font weight as semibold.
+
+In 'prettier.config.js' place the following
+
+export default {
+  "plugins": ["prettier-plugin-tailwindcss"]
+}
+
+
+
+' text-yellow-500' here text color set to yello with intensity 500. 'text-xl' text set to extra large.
+
+
+export default function Username(){
+    return (
+        <div className="text-sm font-semibold">
+            Bini Babu
+        </div>
+    )
+}
+
+
+'text-sm' text to smaller.
+
+
+
+Header.jsx
+
+import { Link } from "react-router-dom";
+import SearchOrder from "../feature/order/SearchOrder";
+
+export default function Header(){
+
+    return (
+        <header className="bg-yellow-200 px-4 py-3 border-b border-stone-600">
+         <Link to='/' className="tracking-widest">Fast React Pizza Co.</Link>
+         <SearchOrder />
+         <Username />
+        </header>
+    )
+}
+
+
+
+'bg-yellow-200' bg denote backgroundcolor with yellow at intensity 200. 'tracking-widest' provides letter-spacing. 'tracking-[5px]' gives letter spacing of 5px. 'px-4'  denotes left and right padding 16px. 'py-3' denotes padding top and bottom 12px. 'border-b' denotes border at bottom and 'border-stone-600' denotes border color stone. 'border-b-8' 8 denotes  border width
+
+
+
+CartOverview.jsx
+
+
+import { Link } from "react-router-dom";
+
+function CartOverview() {
+  return (
+    <div className="bg-stone-700 text-stone-200 uppercase p-4">
+      <p className="space-x-4  font-semibold text-stone-300">
+        <span>23 pizzas</span>
+        <span>$23.45</span>
+      </p>
+      <Link to='/cart'>Open cart &rarr;</Link>
+    </div>
+  );
+}
+
+export default CartOverview;
+
+
+
+'bg-stone-700' set to background color to stone with intensity 700 and text color set to stone color with intensity 200. 'uppercase' transfers the text to uppercase. 'p-4' denotes padding to left, right, bottom, left to 16px. 'space-x-4 ' provides space of 16px horizontally.
+
+
+
+Home.jsx
+
+
+import CreateUser from '../feature/user/CreateUser'
+function Home() {
+  return (
+    <div className='my-10 text-center'>
+      <h1 className="text-xl font-semibold mb-4">
+        The best pizza.
+        <br />
+        <span className="text-yellow-500">
+ Straight out of the oven, straight to you.
+        </span>
+       
+      </h1>
+      <CreateUser />
+    </div>
+  );
+}
+
+export default Home;
+
+
+mb-4 denotes margin bottom to 16px
+mx-0 denotes margin left and margin right to 0px
+my-0 denotes margin bottom and margin top to 0px
+
+
+
+Responsive design Tailwind css
+
+'sm' denotes minimum width of 640px, 'md' minimum width of 768px, 'lg' minimum width of 1024px, 'xl' minimum width of 1280px, '2xl' minimum width of 1536px
+
+sm:my-16 denotes  minimum width of 640px of margin top and bottom of 64px when the width of screen below 640px then the default css will come into effect here in the bottom my-10
+
+
+Home.jsx
+
+
+import CreateUser from '../feature/user/CreateUser'
+function Home() {
+  return (
+    <div className='my-10 text-center sm:my-16'>
+      <h1 className="text-xl font-semibold  mb-8">
+        The best pizza.
+        <br />
+        <span className="text-yellow-500">
+ Straight out of the oven, straight to you.
+        </span>
+       
+      </h1>
+      <CreateUser />
+    </div>
+  );
+}
+
+export default Home;
+
+
+
+
+Header.jsx
+
+
+import { Link } from "react-router-dom";
+import SearchOrder from "../feature/order/SearchOrder";
+import Username from "../feature/user/Username";
+
+export default function Header(){
+
+    return (
+        <header className="bg-yellow-200 px-4 py-3 border-b border-stone-600 sm:px-6">
+         <Link to='/' className="tracking-widest">Fast React Pizza Co.</Link>
+         <SearchOrder />
+         <Username />
+        </header>
+    )
+}
+
+
+
+
+CartOverview.jsx
+
+import { Link } from "react-router-dom";
+
+function CartOverview() {
+  return (
+    <div className="bg-stone-700 text-stone-200 uppercase p-4 sm:px-6 md:text-base">
+      <p className="space-x-4 font-semibold text-stone-300 sm:space-x-6">
+        <span>23 pizzas</span>
+        <span>$23.45</span>
+      </p>
+      <Link to='/cart'>Open cart &rarr;</Link>
+    </div>
+  );
+}
+
+export default CartOverview;
+
+
+
+'md:text-base' denotes when width of screen starts from 768px then the text is set base which means default.
+'w-72' denotes width to 128px, 'h-10' to 40px
+
+
+
+CreateUser.jsx
+
+
+import { useState } from 'react';
+
+function CreateUser() {
+  const [username, setUsername] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <p className='mb-4 text-sm text-stone-600 md:text-base'>👋 Welcome! Please start by telling us your name:</p>
+
+      <input
+        type="text"
+        placeholder="Your full name"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)} className='w-72 h-10'
+      />
+
+      {username !== '' && (
+        <div>
+          <button>Start ordering</button>
+        </div>
+      )}
+    </form>
+  );
+}
+
+export default CreateUser;
+
+
+
+
+
+
+Flex tailwind CSS
+
+
+'flex items-center justify-between' converts to flex using make 'flex' items center using 'items-center' and put space between items using 'justify-between' 
+
+
+CartOverview.jsx
+
+
+import { Link } from "react-router-dom";
+
+function CartOverview() {
+  return (
+    <div className="flex items-center justify-between bg-stone-700 text-stone-200 uppercase p-4 sm:px-6 md:text-base">
+      <p className="space-x-4 font-semibold text-stone-300 sm:space-x-6">
+        <span>23 pizzas</span>
+        <span>$23.45</span>
+      </p>
+      <Link to='/cart'>Open cart &rarr;</Link>
+    </div>
+  );
+}
+
+export default CartOverview;
+
+
+
+Header.jsx
+
+
+
+
+Grid Tailwind CSS
+
+
+To place footer to bottom of the screen we place 'grid' to home page so the header, main and footer section will be properly aligned.
+
+'grid grid-rows-3 gap-4' placing grid of css with items in page placed in rows using 'grid-rows-3' where header, main and footer placed in 3 rows.
+
+' h-screen grid-rows-[auto_1fr_auto]' here 'h-screen' takes the height of the screen of 100vh and 'grid-rows-[auto_1fr_auto]' here header and footer aligned rows of auto, main portionallocates maximum space of 1fr.
+
+'overflow-scroll' will provide scroll to only main portion since 'overflow-scroll' given in main className.
+
+max-w-3xl provides maximum width of 3xl in size even for smaller screen.
+
+
+
+App.Layout.jsx
+
+import CartOverview from "../feature/cart/CartOverview";
+import Header from "./Header";
+import { Outlet, useNavigation } from "react-router-dom";
+import Loader from "./Loader";
+
+export default function AppLayout(){
+    const navigation = useNavigation();
+    const loading = navigation.state === "loading";
+    return (
+        <div className="grid h-screen grid-rows-[auto_1fr_auto] gap-4">
+            {loading && <Loader />}
+           <Header /> 
+           <main className="overflow-scroll bg-red-400 max-w-3xl">
+            <h1>Content</h1>
+            <Outlet />
+           </main>
+           <CartOverview />
+        </div>
+    )
+}
